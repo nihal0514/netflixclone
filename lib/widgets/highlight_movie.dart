@@ -37,7 +37,7 @@ class HighlightMovie extends StatelessWidget {
                 borderRadius: BorderRadius.zero,
                 movie: movies.list.first,
                 width: width,
-                height: width + (width * .6),
+                height: width + (width * .2),
               ),
             ),
             Positioned(

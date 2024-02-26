@@ -1,5 +1,6 @@
 import 'package:flutter_netflix/api/api.dart';
 import 'package:flutter_netflix/model/configuration.dart';
+import 'package:flutter_netflix/model/search.dart';
 import 'package:flutter_netflix/model/season.dart';
 import 'package:flutter_netflix/model/tmdb_image.dart';
 
@@ -36,4 +37,7 @@ class TMDBRepository {
   Future<TMDBImages> getImages(id, type) async {
     return TMDBImages.fromJson(await _client.getImages(id, type));
   }
+
+
+
 }

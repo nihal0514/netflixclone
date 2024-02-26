@@ -29,3 +29,9 @@ const profileColors = [
   Colors.green,
   Colors.purple
 ];
+
+class User{
+  String name;
+
+  User(this.name);
+}

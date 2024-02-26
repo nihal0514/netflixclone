@@ -2,10 +2,11 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+import '../model/search.dart';
+
 class TMDB {
   final endpoint = 'https://api.themoviedb.org/3';
 
-  // Get a free key at: https://www.themoviedb.org/documentation/api
   final apiKey = 'b8735916ebe69a988e7a757928558cf0';
 
   Future<List<Map<String, dynamic>>> getTrending(
@@ -45,5 +46,11 @@ class TMDB {
     var result =
         await http.get(Uri.parse('$endpoint/$type/$id/images?api_key=$apiKey'));
     return jsonDecode(result.body);
+  }
+
+  Future<SearchModel> searchMovie(name) async {
+    var result =
+    await http.get(Uri.parse('$endpoint/search/movie?query=$name&include_adult=false&language=en-US&page=1&api_key=$apiKey'));
+    return searchModelFromJson(result.body);
   }
 }

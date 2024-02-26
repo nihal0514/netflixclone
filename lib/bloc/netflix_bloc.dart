@@ -2,11 +2,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_netflix/model/configuration.dart';
 import 'package:flutter_netflix/model/season.dart';
 import 'package:flutter_netflix/repository/repository.dart';
+import 'package:flutter_netflix/utils/utils.dart';
 
+import '../api/api.dart';
 import '../model/movie.dart';
+import '../model/search.dart';
 
 part 'netflix_event.dart';
 part 'netflix_state.dart';
+
 
 class ProfileSelectorBloc extends Bloc<ProfileEvent, ProfileState> {
   ProfileSelectorBloc() : super(ProfileState(0)) {
@@ -92,6 +96,40 @@ class DiscoverMoviesBloc extends Bloc<MovieEvent, MovieState> {
   DiscoverMoviesBloc({required this.repository}) : super(MovieInitial()) {
     on<DiscoverMoviesEvent>((event, emit) async {
       emit(DiscoverMovies(await repository.discover('movie')));
+    });
+  }
+}
+
+List<User> userListarray=[User("user1"),User("user2"),];
+
+class AddUserBloc extends Bloc<MovieEvent,MovieState>{
+
+  AddUserBloc(): super(MovieInitial()){
+    on<addUserEvent> ((event,emit) async{
+      userListarray.add(User(event.name));
+
+      emit(userList(userListarray));
+    });
+  }
+}
+
+class ShowAllUserBloc extends Bloc<MovieEvent,MovieState>{
+
+
+  ShowAllUserBloc(): super(MovieInitial()){
+    on<showAllUserEvent> ((event,emit) async{
+      emit(userList(userListarray));
+    });
+  }
+}
+
+
+class SearchListResult extends Bloc<MovieEvent,MovieState>{
+  final TMDB _client = TMDB();
+  SearchListResult(): super(MovieInitial()){
+    on<searchEvent> ((event,emit) async{
+      SearchModel searchAns= await _client.searchMovie(event.name);
+      emit(searchListResult(searchAns.results));
     });
   }
 }

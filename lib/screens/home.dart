@@ -110,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ])),
         ];
       },
-      body: CustomScrollView(
+      body:  CustomScrollView(
         physics: const ClampingScrollPhysics(),
         controller: _scrollController,
         slivers: [
@@ -182,7 +182,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(
                 height: 180.0,
-                child: Builder(builder: (context) {
+                child:
+                Builder(builder: (context) {
                   final movies =
                       context.watch<TrendingMovieListWeeklyBloc>().state;
 
@@ -232,7 +233,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ]),
           ),
         ],
-      ),
+      )
     );
   }
 }

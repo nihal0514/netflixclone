@@ -1,15 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_netflix/bloc/netflix_bloc.dart';
+import 'package:flutter_netflix/screens/addprofile.dart';
 import 'package:flutter_netflix/utils/utils.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
 import '../widgets/profile_icon.dart';
 
-class ProfileSelectionScreen extends StatelessWidget {
+class ProfileSelectionScreen extends StatefulWidget {
   const ProfileSelectionScreen({super.key});
 
+  @override
+  State<ProfileSelectionScreen> createState() => _ProfileSelectionScreenState();
+}
+
+class _ProfileSelectionScreenState extends State<ProfileSelectionScreen> {
+
+  @override
+  void initState() {
+    context
+        .read<ShowAllUserBloc>()
+        .add(showAllUserEvent());
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +35,12 @@ class ProfileSelectionScreen extends StatelessWidget {
         ),
         centerTitle: true,
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(LucideIcons.pencil))
+          IconButton(onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const AddProfile()),
+            );
+          }, icon: const Icon(LucideIcons.pencil))
         ],
         elevation: 0.0,
       ),
@@ -42,7 +61,7 @@ class ProfileSelectionScreen extends StatelessWidget {
                   mainAxisSpacing: 32.0,
                   crossAxisSpacing: 8.0,
                   crossAxisCount: 2),
-              itemCount: 5,
+              itemCount: userListarray.length,
               itemBuilder: (BuildContext ctx, index) {
                 return GestureDetector(
                   onTap: () {
@@ -66,7 +85,7 @@ class ProfileSelectionScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 8.0),
-                      Text('Profile ${index + 1}')
+                      Text(userListarray[index].name)
                     ],
                   ),
                 );

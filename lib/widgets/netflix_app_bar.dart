@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_netflix/bloc/netflix_bloc.dart';
 import 'package:flutter_netflix/cubit/animation_status_cubit.dart';
+import 'package:flutter_netflix/screens/movieSearch.dart';
 import 'package:flutter_netflix/utils/utils.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
@@ -80,7 +81,12 @@ class NetflixHeader extends SliverPersistentHeaderDelegate {
                     IconButton(
                         onPressed: () {}, icon: const Icon(LucideIcons.cast)),
                     IconButton(
-                        onPressed: () {}, icon: const Icon(LucideIcons.search)),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const MovieSearch()),
+                          );
+                        }, icon: const Icon(LucideIcons.search)),
                     IconButton(
                       onPressed: () => context.go('/profile'),
                       icon: Builder(builder: (context) {

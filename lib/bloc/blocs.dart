@@ -62,6 +62,18 @@ class BlocWidget extends StatelessWidget {
             create: (BuildContext context) =>
                 DiscoverMoviesBloc(repository: _repository),
           ),
+            BlocProvider<AddUserBloc>(
+              create: (BuildContext context) =>
+                  AddUserBloc(),
+            ),
+          BlocProvider<ShowAllUserBloc>(
+            create: (BuildContext context) =>
+                ShowAllUserBloc(),
+          ),
+          BlocProvider<SearchListResult>(
+            create: (BuildContext context) =>
+                SearchListResult(),
+          )
         ],
         child: child,
       ),

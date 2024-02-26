@@ -32,3 +32,19 @@ class SelectProfile extends ProfileEvent {
 
   SelectProfile(this.profile);
 }
+
+class showAllUserEvent extends MovieEvent{
+}
+
+class addUserEvent extends MovieEvent{
+  final String name;
+
+  addUserEvent(this.name);
+
+}
+class searchEvent extends MovieEvent{
+  final String name;
+
+  searchEvent(this.name);
+}
+

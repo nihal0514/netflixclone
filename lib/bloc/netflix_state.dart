@@ -57,3 +57,14 @@ class DiscoverMovies extends MovieState {
 
   DiscoverMovies(this.list);
 }
+
+class userList extends MovieState{
+  final List<User> users;
+
+  userList(this.users);
+}
+class searchListResult extends MovieState{
+  final List<Result> searchResultList;
+
+  searchListResult(this.searchResultList);
+}
